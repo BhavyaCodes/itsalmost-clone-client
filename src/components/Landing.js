@@ -19,9 +19,9 @@ const Landing = () => {
     }
 
       axios
-      .post('http://localhost:5000/events', formData)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err.data))
+        .post("/api/events", formData)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err.data));
     }
 
   return (
