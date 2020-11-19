@@ -12,7 +12,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={Landing} />
           <Route path="/:id" exact component={Event} />
-          <Route path="/error/404" exact component={Error404} />
+          <Route exact component={Error404} />
           <Route path="/error/500" exact component={Error500} />
         </Switch>
       </div>
