@@ -11,8 +11,8 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact component={Landing} />
+          <Route component={Error404} />
           <Route path="/:id" exact component={Event} />
-          <Route exact component={Error404} />
           <Route path="/error/500" exact component={Error500} />
         </Switch>
       </div>
