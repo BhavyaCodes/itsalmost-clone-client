@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import DateTimePicker from 'react-datetime-picker';
 
 const Landing = () => {
   const [eventName, setEventName] = useState("");
-  const eventDate = "2020-01-01";
+  const [value, onChange] = useState(new Date());
 
   const handleChange = (e) => {
     setEventName(e.target.value);
@@ -14,7 +15,7 @@ const Landing = () => {
 
     const data = {
       eventName: eventName,
-      eventDate: eventDate,
+      eventDate: value
     };
 
     axios
@@ -25,7 +26,11 @@ const Landing = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input onChange={handleChange} type="text" value={eventName} />
+      <input onChange={handleChange} type="text" value={eventName} /><br></br>
+      <DateTimePicker
+      onChange={onChange}
+      value={value}
+      /><br></br>
       <button type="submit"> Create Free Countdown </button>
     </form>
   );
