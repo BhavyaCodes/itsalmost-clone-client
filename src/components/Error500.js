@@ -6,7 +6,7 @@ const Error500 = () => {
         <h1>500 Error</h1>
         <div>Oops! Something is not right.</div>
 
-        <a href="./">Create a new Countdown.</a>
+        <a href="../">Create a new Countdown.</a>
 
         </div>
       );
