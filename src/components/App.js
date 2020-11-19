@@ -1,5 +1,5 @@
 import "./App.css";
-import { Redirect, BrowserRouter, Route, Switch } from "react-router-dom";
+import {BrowserRouter, Route, Switch } from "react-router-dom";
 import Landing from "./Landing";
 import Event from "./Event";
 import Error404 from "./Error404"
