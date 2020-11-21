@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 const Error500 = () => {
 
     return (
-        <div>
+      <div>
         <h1>500 Error</h1>
         <div>Oops! Something is not right.</div>
-        <a href="../">Create a new Countdown.</a>
-        </div>
-      );
+        <Link to="/">Create a new Countdown.</Link>
+      </div>
+    );
 }
 
 
