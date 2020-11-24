@@ -1,10 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import DateTimePicker from 'react-datetime-picker';
+import { useHistory } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 const Landing = () => {
   const [eventName, setEventName] = useState("");
   const [value, onChange] = useState(new Date());
+  let history = useHistory();
+  const { id } = useParams();
 
   const handleChange = (e) => {
     setEventName(e.target.value);
@@ -20,7 +24,10 @@ const Landing = () => {
 
     axios
       .post("/api/events", data)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data)
+        history.push(`/${res.data._id}`)
+      })
       .catch((err) => console.log(err.data));
   };
 
@@ -31,7 +38,7 @@ const Landing = () => {
       onChange={onChange}
       value={value}
       /><br></br>
-      <button type="submit"> Create Free Countdown </button>
+      <button type="submit">Create Free Countdown </button>
     </form>
   );
 };
