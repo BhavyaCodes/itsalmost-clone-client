@@ -44,7 +44,15 @@ const Event = () => {
   return data ? (
     <div>
       <h1>{data.eventName}</h1>
-      <span>{intervals[0]} : {intervals[1]} : {intervals[2]} : {intervals[3]} : {intervals[4]} : {intervals[5]} : {intervals[6]}</span>
+      <div>
+        {intervals.map((interval, index) => {
+          if (index !== intervals.length - 1) {
+            return <span>{interval} : </span>
+          } else {
+            return <span> {interval}</span>
+          }
+        })}
+      </div>
     </div>
   ) : (
     <div>spinner</div>
