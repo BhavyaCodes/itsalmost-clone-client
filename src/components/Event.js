@@ -7,7 +7,7 @@ const Event = () => {
 
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
-  const [diff, setDiff] = useState({
+  const [timeUntilEvent, setTimeUntilEvent] = useState({
     years: 0,
     months: 0,
     days: 0,
@@ -30,7 +30,7 @@ const Event = () => {
           return end.diff(start, ['years', 'months', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'])
         }
         setInterval(() => {
-          setDiff(timeLeft());
+          setTimeUntilEvent(timeLeft());
         }, 1);
       } catch (error) {
         setError(true);
@@ -39,7 +39,7 @@ const Event = () => {
     getData();
   }, [id]);
 
-  const intervals = Object.values(Object.values(diff)[0]);
+  const intervals = Object.values(Object.values(timeUntilEvent)[0]);
 
   return data ? (
     <div>
