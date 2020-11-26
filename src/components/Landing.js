@@ -23,7 +23,6 @@ const Landing = () => {
     axios
       .post("/api/events", data)
       .then((res) => {
-        console.log(res.data)
         history.push(`/${res.data._id}`)
       })
       .catch((err) => console.log(err.data));
