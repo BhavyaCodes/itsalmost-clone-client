@@ -55,13 +55,17 @@ const Event = () => {
       <h2>{new Date(data.eventDate).toLocaleString()}</h2>
       <h2>{new Date(data.eventDate).toString()}</h2>
       <div>
-        {intervals.map((interval, index) => {
+        {!intervals.every(item=>item<=0) ? intervals.map((interval, index) => {
           if (index !== intervals.length - 1) {
             return <span>{interval} : </span>;
           } else {
             return <span> {interval}</span>;
           }
-        })}
+        }):
+        <div>
+          <h1>Hurray  The count down completed</h1>
+        </div>
+        }
       </div>
     </div>
   ) : (
