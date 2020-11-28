@@ -47,6 +47,16 @@ const Event = () => {
   }, [id]);
 
   const intervals = Object.values(Object.values(timeUntilEvent)[0]);
+  const years = intervals[0]
+  const months = intervals[1]
+  const days = intervals[2]
+  const hours = intervals[3]
+  const minutes = intervals[4]
+  const seconds = intervals[5]
+  const milliseconds = intervals[6]
+
+
+  console.log(intervals)
 
   return data ? (
     <div>
@@ -66,6 +76,16 @@ const Event = () => {
           <h1>Hurray  The count down completed</h1>
         </div>
         }
+
+        {years > 0 && <div>{years} years </div>}
+        {months > 0 && <div>{months} months </div>}
+        {days > 0 && <div>{days} days </div>}
+        {hours > 0 && <div>{hours} hours</div>}
+        {minutes > 0 && <div>{minutes} minutes</div>}
+        {seconds > 0 && <div>{seconds} seconds</div>}
+        {milliseconds > 0 && <div>{milliseconds} ms</div>}
+        
+ 
       </div>
     </div>
   ) : (
