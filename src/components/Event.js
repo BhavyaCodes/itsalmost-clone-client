@@ -48,8 +48,6 @@ const Event = () => {
 
   const intervals = Object.values(Object.values(timeUntilEvent)[0]);
 
-  console.log(intervals)
-  console.log("Time Until Event", timeUntilEvent)
 
   return data ? (
     <div>
@@ -58,17 +56,7 @@ const Event = () => {
       <h2>{new Date(data.eventDate).toLocaleString()}</h2>
       <h2>{new Date(data.eventDate).toString()}</h2>
       <div>
-        {!intervals.every(item=>item<=0) ? intervals.map((interval, index) => {
-          if (index !== intervals.length - 1) {
-            return <span>{interval} : </span>;
-          } else {
-            return <span> {interval}</span>;
-          }
-        }):
-        <div>
-          <h1>Hurray  The count down completed</h1>
-        </div>
-        }
+
 
         {timeUntilEvent.years > 0 && <div>{timeUntilEvent.years} years </div>}
         {timeUntilEvent.months > 0 && <div>{timeUntilEvent.months} months </div>}
@@ -77,6 +65,12 @@ const Event = () => {
         {timeUntilEvent.minutes > 0 && <div>{timeUntilEvent.minutes} minutes</div>}
         {timeUntilEvent.seconds > 0 && <div>{timeUntilEvent.seconds} seconds</div>}
         {timeUntilEvent.milliseconds > 0 && <div>{timeUntilEvent.milliseconds} ms</div>}
+
+        {intervals.every(item=>item<=0) &&
+        <div>
+          <h1>Hurray  The count down completed</h1>
+        </div>
+        }
         
  
       </div>
