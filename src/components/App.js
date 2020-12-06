@@ -1,7 +1,7 @@
-import "./App.css";
+import "./App.scss";
 import {BrowserRouter, Route, Switch } from "react-router-dom";
 import Landing from "./Landing";
-import Event from "./Event";
+import Event from "./event/Event";
 import Error404 from "./Error404"
 import Error500 from "./Error500"
 
