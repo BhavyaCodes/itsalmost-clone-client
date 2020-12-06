@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+
+import ReactDom from 'react-dom';
 import axios from "axios";
 import DateTimePicker from 'react-datetime-picker';
 import { useHistory } from 'react-router-dom';
@@ -48,6 +50,7 @@ const Landing = () => {
     }
   }, [eventNameFake]);
   
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
