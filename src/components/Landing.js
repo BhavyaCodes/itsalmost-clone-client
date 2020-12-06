@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import ReactDom from 'react-dom';
 import axios from "axios";
 import DateTimePicker from 'react-datetime-picker';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +10,7 @@ const Landing = () => {
   let history = useHistory();
 
   const handleChange = (e) => {
-    setEventName(e.target.value);
+    setEventName(e.currentTarget.textContent);
   };
 
   const handleSubmit = (e) => {
@@ -28,15 +29,35 @@ const Landing = () => {
       .catch((err) => console.log(err.data));
   };
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+      inputRef.current.focus();
+  }, [inputRef]);
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input onChange={handleChange} type="text" value={eventName} /><br></br>
-      <DateTimePicker
-      onChange={onChange}
-      value={value}
-      /><br></br>
-      <button type="submit">Create Free Countdown </button>
-    </form>
+    <div className="container">
+      <form onSubmit={handleSubmit}>
+        <div className={"form-group"} onClick={() => {
+                inputRef.current.focus();
+        }}>
+          <div className="flex">
+            <span>It's almost &nbsp;</span>
+            {/*<input className={"form-control"} onChange={handleChange} type="text" value={eventName} />*/}
+            <span className={"form-control"} ref={inputRef} contentEditable onInput={handleChange} autofocus>&nbsp;</span>
+          </div>
+        </div>
+        <div className={"form-group"}>
+          <DateTimePicker
+            onChange={onChange}
+            value={value}
+          />
+        </div>
+        <div className="form-button">
+          <button className={'btn btn-primary'} type="submit">Create Free Countdown </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
