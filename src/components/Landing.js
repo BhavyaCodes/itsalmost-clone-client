@@ -1,12 +1,17 @@
 import { useState, useEffect, useRef } from "react";
+
 import ReactDom from 'react-dom';
 import axios from "axios";
 import DateTimePicker from 'react-datetime-picker';
 import { useHistory } from 'react-router-dom';
 
+import Faker from 'faker';
+
 const Landing = () => {
   const [eventName, setEventName] = useState("");
+  const [eventNameFake, setEventNameFake] = useState(`It's almost Worldline`);
   const [value, onChange] = useState(new Date());
+  const [isInputClicked, setIsInputClicked] = useState(false);
   let history = useHistory();
 
   const handleChange = (e) => {
@@ -31,20 +36,40 @@ const Landing = () => {
 
   const inputRef = useRef(null);
 
+  
   useEffect(() => {
-      inputRef.current.focus();
-  }, [inputRef]);
+    const fake = Faker.name.title();
+
+
+    const i = setInterval(() => {
+      setEventNameFake("It's almost " + fake);
+    }, 3000)
+    
+    return () => {
+      clearInterval(i);
+    }
+  }, [eventNameFake]);
+  
 
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className={"form-group"} onClick={() => {
-                inputRef.current.focus();
+          setIsInputClicked(true)
+          inputRef.current.focus();
         }}>
           <div className="flex">
-            <span>It's almost &nbsp;</span>
-            {/*<input className={"form-control"} onChange={handleChange} type="text" value={eventName} />*/}
-            <span className={"form-control"} ref={inputRef} contentEditable onInput={handleChange} autofocus>&nbsp;</span>
+            {
+              !isInputClicked ? (
+                <input ref={inputRef} className={"form-control"} type="text" value={eventNameFake} readOnly/>
+              ) : (
+                  <>
+                    <span>It's almost &nbsp;</span>
+                    <span className={"form-control"} suppressContentEditableWarning={true} ref={inputRef} contentEditable onInput={handleChange} autoFocus></span>
+                  </>
+                )
+            }
+
           </div>
         </div>
         <div className={"form-group"}>
